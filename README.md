@@ -3,8 +3,7 @@
 ⚽ ⚽ Taking an analog foosball table into the digital age. 
 
 
-## [issues](https://github.com/sinnerschrader/digitalfoosballtable/issues) 
-and [projects](https://github.com/sinnerschrader/digitalfoosballtable/projects) ##
+## [issues](https://github.com/sinnerschrader/digitalfoosballtable/issues) and [projects](https://github.com/sinnerschrader/digitalfoosballtable/projects) ##
 Every Issues has to be sign to a project. At the moment we have two projects (has to be discuss) 
 * [MVP](https://github.com/sinnerschrader/digitalfoosballtable/projects/1)
 * [After MVP](https://github.com/sinnerschrader/digitalfoosballtable/projects/2)
