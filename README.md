@@ -13,4 +13,4 @@ digitalfoosballtable follows the [Contributor Covenant Code of Conduct](CODE_OF_
 ---------------
 
 Copyright 2017 by [SinnerSchrader Deutschland GmbH](https://github.com/sinnerschrader/) and [contributors](https://github.com/sinnerschrader/digitalfoosballtable/graphs/contributors).
-Released under the MIT license.
+Released under the [MIT license](/blob/master/LICENSE).
