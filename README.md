@@ -8,6 +8,7 @@ and [projects](https://github.com/sinnerschrader/digitalfoosballtable/projects) 
 Every Issues has to be sign to a project. At the moment we have two projects (has to be discuss) 
 * [MVP](https://github.com/sinnerschrader/digitalfoosballtable/projects/1)
 * [After MVP](https://github.com/sinnerschrader/digitalfoosballtable/projects/2)
+
 By adding the issues to the projects we will get a better overview.
 Could be discussed if we have a project for software and one for hardware, 
 but I like the idea of have all at one place.
