@@ -1,38 +1,19 @@
-> ⚽ We already have digital foosball, now we will make digital foosball table 2018
+> We already have [digital foosball](https://github.com/sinnerschrader/digitalfoosball), now we will make digital foosball table 2017
+# digitalfoosballtable #
+⚽ ⚽ Taking an analog foosball table into the digital age. 
 
-# digitalfoosballtable
 
-## Getting started
-
-```
-npm install -g npx
-npx yarn install
-npx yarn start
-```
-
-## Prerequesites
-
-* Node.js `>= 8`
-* npx
-* TypeScript Editor plugin
-
-## Scope
-
-A few weeks ago we had a lot of amazing ideas for a next generation of digital foosball table.
-We decided to have as first an MVP for JSKongress:
-
-* counting goals
-* show goals at a device (IPad / TV / Screen)
-* show players via webcams at screen.
-
-## [Issues](https://github.com/sinnerschrader/digitalfoosballtable/issues) and [projects](https://github.com/sinnerschrader/digitalfoosballtable/projects)
-Every issue has to be assigned to a project: 
-
+## [issues](https://github.com/sinnerschrader/digitalfoosballtable/issues) and [projects](https://github.com/sinnerschrader/digitalfoosballtable/projects) ##
+Every Issues has to be sign to a project. At the moment we have two projects (has to be discuss) 
 * [MVP](https://github.com/sinnerschrader/digitalfoosballtable/projects/1)
 * [After MVP](https://github.com/sinnerschrader/digitalfoosballtable/projects/2)
 
+By adding the issues to the projects we will get a better overview.
+Could be discussed if we have a project for software and one for hardware, 
+but I like the idea of have all at one place.
 
-## Contribute
+
+## Contribute ##
 Feel free to dive in! Open an
 [issue](https://github.com/sinnerschrader/digitalfoosballtable/issues/new) or
 submit a [Pull Request](https://github.com/sinnerschrader/digitalfoosballtable/compare). ❤️
