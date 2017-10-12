@@ -2,6 +2,8 @@
 
 # digitalfoosballtable
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sinnerschrader/digitalfoosballtable.svg)](https://greenkeeper.io/)
+
 ## Getting started
 
 ```
