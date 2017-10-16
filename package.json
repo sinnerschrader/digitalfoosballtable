@@ -1,0 +1,24 @@
+{
+  "name": "digitalfoosballtable",
+  "version": "1.0.0",
+  "description": "Taking an analog foosball table into the digital age",
+  "license": "MIT",
+  "author": {
+    "name": "SinnerSchrader",
+    "email": "jobs@sinnerschrader.com"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "execa": "^0.8.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "sse-express": "^1.0.2"
+  }
+}

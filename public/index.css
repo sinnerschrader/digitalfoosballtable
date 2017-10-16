@@ -1,0 +1,73 @@
+html {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #333333;
+  color: #f1f1f1;
+  font-family: "Neue Helvetica", Helvetica, Verdana, sans-serif;
+}
+
+/* reset H */
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.headline {
+  position: absolute;
+  right: -2.5em;
+  top: 2em;
+  transform: rotate(45deg);
+  padding: 0 2em;
+  background-color: lightgreen;
+  color: #333333;
+  line-height: 2;
+}
+
+
+.play-time {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  font-size: 2em;
+}
+
+.teams {
+  flex: 1 0 100%;
+  display: flex;
+  min-height: 100%;
+}
+
+.team {
+  flex: 1 0 50%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 4em 0;
+  text-align: center;
+}
+
+.goals,
+.team h2 {
+  flex: 0 0 auto;
+}
+
+.team-white {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.goals {
+  display: inline-block;
+  font-size: 50vw;
+  line-height: 1;
+}
