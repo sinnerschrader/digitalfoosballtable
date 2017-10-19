@@ -7,6 +7,9 @@
     "name": "SinnerSchrader",
     "email": "jobs@sinnerschrader.com"
   },
+  "scripts": {
+    "start": "node cli.js"
+  },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"

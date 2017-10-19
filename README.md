@@ -1,7 +1,6 @@
 > We already have [digital foosball](https://github.com/sinnerschrader/digitalfoosball), now we will make digital foosball table 2017
-# digitalfoosballtable #
+# digitalfoosballtable 
 ⚽ ⚽ Taking an analog foosball table into the digital age.
-
 
 ## MVP
 
@@ -23,12 +22,28 @@ Could be discussed if we have a project for software and one for hardware,
 but I like the idea of have all at one place.
 
 
-## Contribute ##
+## Contribute 
 Feel free to dive in! Open an
 [issue](https://github.com/sinnerschrader/digitalfoosballtable/issues/new) or
 submit a [Pull Request](https://github.com/sinnerschrader/digitalfoosballtable/compare). ❤️
 
 digitalfoosballtable follows the [Contributor Covenant Code of Conduct](https://github.com/sinnerschrader/digitalfoosballtable/Code_of_Conduct.md).
+
+## Development
+
+### Prerequesites
+
+* Node.js `>=8`
+* npm `>=5`
+
+### Getting started
+
+```sh
+n 8
+npm install
+npm start
+# Started digitalfoosballtable server at http://localhost:1337
+```
 
 ---------------
 
