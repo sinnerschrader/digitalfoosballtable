@@ -27,7 +27,7 @@ Feel free to dive in! Open an
 [issue](https://github.com/sinnerschrader/digitalfoosballtable/issues/new) or
 submit a [Pull Request](https://github.com/sinnerschrader/digitalfoosballtable/compare). ❤️
 
-digitalfoosballtable follows the [Contributor Covenant Code of Conduct](https://github.com/sinnerschrader/digitalfoosballtable/Code_of_Conduct.md).
+digitalfoosballtable follows the [Contributor Covenant Code of Conduct](https://github.com/sinnerschrader/digitalfoosballtable/blob/master/Code_of_Conduct.md).
 
 ## Development
 
