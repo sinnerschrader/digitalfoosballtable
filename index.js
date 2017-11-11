@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const {EventEmitter} = require('events');
 const express = require('express');
 const sse = require('sse-express');
+const gpio = require('rpi-gpio');
 
 module.exports = server;
 
@@ -87,3 +88,18 @@ class Game extends EventEmitter {
     };
   }
 }
+
+let teamBlackPin = 3;
+let teamWhitePin = 5;
+
+let teamBlackScore = 0;
+let teamWhiteScore = 0;
+
+gpio.setup(teamBlackPin, gpio.DIR_IN, gpio.EDGE_FALLING);
+gpio.setup(teamWhitePin, gpio.DIR_IN, gpio.EDGE_FALLING);
+
+gpio.on('change', function(channel, value) {
+  if(teamWhitePin === 3) { teamWhiteScore++;}
+  else if(teamBlackPin === 5) { teamBlackScore++;}
+   console.log('Black = ' + teamWhiteScore + ' : White = ' + teamBlackScore);
+});
