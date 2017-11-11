@@ -7,8 +7,8 @@ const getGpio = require('./get-gpio');
 
 const gpio = getGpio({fallback: true});
 
-const team1Pin = 5; // GPIO03 5 from raspberry
-const team2Pin = 3; // GPIO02 3 from raspberry
+const team1Pin = 3; // GPIO03 3 from raspberry
+const team2Pin = 5; // GPIO02 5 from raspberry
 const team1 = 'black';
 const team2 = 'white';
 
@@ -85,16 +85,16 @@ class Game extends EventEmitter {
     this.startTime = null;
     this.endTime = null;
     this.running = false;
-    this.blackScore = 0;
-    this.whiteScore = 0;
+    this.team1Score = 0;
+    this.team2Score = 0;
   }
 
   countGoal(team) {
     if (team === 'black') {
-      this.blackScore += 1;
+      this.team1Score += 1;
     }
     if (team === 'white') {
-      this.whiteScore += 1;
+      this.team2Score += 1;
     }
     this.emit('goal', this);
   }
@@ -117,8 +117,8 @@ class Game extends EventEmitter {
       running: this.running,
       endTime: this.endTime,
       startTime: this.startTime,
-      blackScore: this.blackScore,
-      whiteScore: this.whiteScore
+      team1Score: this.team1Score,
+      team2Score: this.team2Score
     };
   }
 }

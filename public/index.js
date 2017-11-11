@@ -18,6 +18,21 @@ async function main() {
     const data = JSON.parse(e.data);
     stopClock(clockElement, data.endTime);
   });
+
+  source.addEventListener('goal', (e) => {
+    const data = JSON.parse(e.data);
+    showScore(data.team1Score, data.team2Score);
+  })
+}
+
+function showScore(team1Score, team2Score) {
+  const team1 = document.querySelector('[data-score="team1"]');
+  const team2 = document.querySelector('[data-score="team2"]');
+
+  team1.textContent = team1Score;
+  team2.textContent = team2Score;
+
+  console.log('score ' + team1Score + ' white ' + team2Score);
 }
 
 function startClock(element, stamp) {
@@ -27,6 +42,9 @@ function startClock(element, stamp) {
 function stopClock(element, stamp) {
   console.log('stop');
 }
+
+
+showScore();
 
 async function setGame(game, running) {
   const response = await fetch('/game', {
@@ -40,6 +58,8 @@ async function setGame(game, running) {
   const data = await response.json();
   game.running = data.running;
   game.endTime = data.endTime;
+  game.team1Score = data.team1Score;
+  game.team2Score = data.team2Score;
   game.startTime = data.startTime;
   return data;
 }
