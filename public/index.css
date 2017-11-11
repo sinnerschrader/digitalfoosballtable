@@ -56,8 +56,12 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
-.goals,
-.team h2 {
+.team-headline {
+  font-size: 3rem;
+}
+
+.team-score,
+.team-headline {
   flex: 0 0 auto;
 }
 
@@ -66,8 +70,8 @@ h1, h2, h3, h4 {
   color: #333333;
 }
 
-.goals {
+.team-score {
   display: inline-block;
-  font-size: 50vw;
+  font-size: 50vh;
   line-height: 1;
 }
