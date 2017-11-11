@@ -99,7 +99,7 @@ gpio.setup(teamBlackPin, gpio.DIR_IN, gpio.EDGE_FALLING);
 gpio.setup(teamWhitePin, gpio.DIR_IN, gpio.EDGE_FALLING);
 
 gpio.on('change', function(channel, value) {
-  if(teamWhitePin === 3) { teamWhiteScore++;}
-  else if(teamBlackPin === 5) { teamBlackScore++;}
+  if(teamWhitePin === 5) { teamWhiteScore++;}
+  else if(teamBlackPin === 3) { teamBlackScore++;}
    console.log('Black = ' + teamWhiteScore + ' : White = ' + teamBlackScore);
 });
