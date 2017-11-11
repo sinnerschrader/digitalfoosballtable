@@ -3,6 +3,14 @@ const bodyParser = require('body-parser');
 const {EventEmitter} = require('events');
 const express = require('express');
 const sse = require('sse-express');
+const getGpio = require('./get-gpio');
+
+const gpio = getGpio({fallback: true});
+
+const team1Pin = 5; // GPIO03 5 from raspberry
+const team2Pin = 3; // GPIO02 3 from raspberry
+const team1 = 'black';
+const team2 = 'white';
 
 module.exports = server;
 
@@ -10,6 +18,18 @@ function server(options = {}) {
   return new Promise((resolve) => {
     const game = new Game();
     const server = createServer();
+
+    let black = 0;
+    let white = 0;
+
+    gpio.setup(team1Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
+    gpio.setup(team2Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
+
+    gpio.on('change', function(channel, value) {
+      if(channel === team1Pin) { white++; game.countGoal(team1);}
+      else if(channel === team2Pin) { black++; game.countGoal(team2);}
+      console.log('black ' + black + ' : white ' + white);
+    });
 
     const app = express()
       .disable('x-powered-by')
@@ -31,6 +51,7 @@ function events(game) {
     game.on('progress', (e) => send('progress', e));
     game.on('start', (e) => send('start', e));
     game.on('stop', (e) => send('stop', e));
+    game.on('goal', (e) => send('goal', e));
   };
 }
 
@@ -64,6 +85,18 @@ class Game extends EventEmitter {
     this.startTime = null;
     this.endTime = null;
     this.running = false;
+    this.blackScore = 0;
+    this.whiteScore = 0;
+  }
+
+  countGoal(team) {
+    if (team === 'black') {
+      this.blackScore += 1;
+    }
+    if (team === 'white') {
+      this.whiteScore += 1;
+    }
+    this.emit('goal', this);
   }
 
   start() {
@@ -83,7 +116,9 @@ class Game extends EventEmitter {
     return {
       running: this.running,
       endTime: this.endTime,
-      startTime: this.startTime
+      startTime: this.startTime,
+      blackScore: this.blackScore,
+      whiteScore: this.whiteScore
     };
   }
 }
