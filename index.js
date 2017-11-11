@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const {EventEmitter} = require('events');
 const express = require('express');
 const sse = require('sse-express');
-//const getGpio = require('./get-gpio');
+const getGpio = require('./get-gpio');
 
-//const gpio = getGpio({fallback: true});
+const gpio = getGpio({fallback: true});
 
 
-const gpio = require('rpi-gpio');
+//const gpio = require('rpi-gpio');
 
 const team1Pin = 3; // GPIO02 3 from raspberry
 const team2Pin = 5; // GPIO03 5 from raspberry
@@ -42,6 +42,7 @@ function events(game) {
     game.on('progress', (e) => send('progress', e));
     game.on('start', (e) => send('start', e));
     game.on('stop', (e) => send('stop', e));
+    game.on('goal', (e) => send('goal', e));
   };
 }
 
