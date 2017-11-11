@@ -7,8 +7,8 @@ const getGpio = require('./get-gpio');
 
 const gpio = getGpio({fallback: true});
 
-const team1Pin = 5; // GPIO03 5 from raspberry
-const team2Pin = 3; // GPIO02 3 from raspberry
+const team1Pin = 3; // GPIO03 3 from raspberry
+const team2Pin = 5; // GPIO02 5 from raspberry
 const team1 = 'black';
 const team2 = 'white';
 
