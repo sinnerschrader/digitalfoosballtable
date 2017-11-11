@@ -10,8 +10,8 @@ const gpio = getGpio({fallback: true});
 
 //const gpio = require('rpi-gpio');
 
-const team1Pin = 3; // GPIO02 3 from raspberry
-const team2Pin = 5; // GPIO03 5 from raspberry
+const team1Pin = 5; // GPIO03 5 from raspberry
+const team2Pin = 3; // GPIO02 3 from raspberry
 const team1 = 'black';
 const team2 = 'white';
 
@@ -43,6 +43,7 @@ function events(game) {
     game.on('start', (e) => send('start', e));
     game.on('stop', (e) => send('stop', e));
     game.on('goal', (e) => send('goal', e));
+    game.on('goal', (e) => console.log('goal', e))
   };
 }
 
@@ -87,6 +88,7 @@ class Game extends EventEmitter {
     if (team === 'white') {
       this.whiteScore += 1;
     }
+    console.log('countGoal', team, this);
     this.emit('goal', this);
   }
 
@@ -114,10 +116,14 @@ class Game extends EventEmitter {
   }
 }
 
+let black = 0;
+let white = 0;
+
 gpio.setup(team1Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
 gpio.setup(team2Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
 
 gpio.on('change', function(channel, value) {
-  if(channel === team1Pin) { game.countGoal(team1);}
-  else if(channel === team2Pin) { game.countGoal(team2);}
+  if(channel === team1Pin) { white++; game.countGoal(team1);}
+  else if(channel === team2Pin) { black++; game.countGoal(team2);}
+  console.log('black ' + black + ' : white ' + white);
 });
