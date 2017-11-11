@@ -5,9 +5,8 @@ const express = require('express');
 const sse = require('sse-express');
 const mock = require('mock-require');
 
-
 mock('rpi-gpio', { request: function() {
-  console.log('rpi-gpio called');
+  console.log('gpio called');
 }});
 
 const gpio = require('rpi-gpio');
@@ -16,7 +15,6 @@ const team1Pin = 3; // GPIO02 3 from raspberry
 const team2Pin = 5; // GPIO03 5 from raspberry
 const team1 = 'black';
 const team2 = 'white';
-
 
 module.exports = server;
 
@@ -120,6 +118,6 @@ gpio.setup(team1Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
 gpio.setup(team2Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
 
 gpio.on('change', function(channel, value) {
-  if(channel === 5) { game.countGoal(team1);}
-  else if(channel === 3) { game.countGoal(team2);}
+  if(channel === team1Pin) { game.countGoal(team1);}
+  else if(channel === team2Pin) { game.countGoal(team2);}
 });
