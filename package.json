@@ -16,7 +16,8 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "execa": "^0.8.0"
+    "execa": "^0.8.0",
+    "mock-require": "^2.0.2"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

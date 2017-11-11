@@ -3,7 +3,20 @@ const bodyParser = require('body-parser');
 const {EventEmitter} = require('events');
 const express = require('express');
 const sse = require('sse-express');
+const mock = require('mock-require');
+
+
+mock('rpi-gpio', { request: function() {
+  console.log('rpi-gpio called');
+}});
+
 const gpio = require('rpi-gpio');
+
+const team1Pin = 3; // GPIO02 3 from raspberry
+const team2Pin = 5; // GPIO03 5 from raspberry
+const team1 = 'black';
+const team2 = 'white';
+
 
 module.exports = server;
 
@@ -65,6 +78,18 @@ class Game extends EventEmitter {
     this.startTime = null;
     this.endTime = null;
     this.running = false;
+    this.blackScore = 0;
+    this.whiteScore = 0;
+  }
+
+  countGoal(team) {
+    if (team === 'black') {
+      this.blackScore += 1;
+    }
+    if (team === 'white') {
+      this.whiteScore += 1;
+    }
+    this.emit('goal', this);
   }
 
   start() {
@@ -84,22 +109,17 @@ class Game extends EventEmitter {
     return {
       running: this.running,
       endTime: this.endTime,
-      startTime: this.startTime
+      startTime: this.startTime,
+      blackScore: this.blackScore,
+      whiteScore: this.whiteScore
     };
   }
 }
 
-let teamBlackPin = 3;
-let teamWhitePin = 5;
-
-let teamBlackScore = 0;
-let teamWhiteScore = 0;
-
-gpio.setup(teamBlackPin, gpio.DIR_IN, gpio.EDGE_FALLING);
-gpio.setup(teamWhitePin, gpio.DIR_IN, gpio.EDGE_FALLING);
+gpio.setup(team1Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
+gpio.setup(team2Pin, gpio.DIR_IN, gpio.EDGE_FALLING);
 
 gpio.on('change', function(channel, value) {
-  if(channel === 5) { teamWhiteScore++;}
-  else if(channel === 3) { teamBlackScore++;}
-   console.log('Black = ' + teamBlackScore + ' : White = ' + teamWhiteScore);
+  if(channel === 5) { game.countGoal(team1);}
+  else if(channel === 3) { game.countGoal(team2);}
 });
