@@ -4,7 +4,7 @@ module.exports = getGpio;
 
 function getGpio({fallback = true} = {}) {
   try {
-    const gpio = require('rpi-gpio');
+    return require('rpi-gpio');
   } catch (err) {
     if (!fallback) {
       throw err;
