@@ -3,13 +3,9 @@ const bodyParser = require('body-parser');
 const {EventEmitter} = require('events');
 const express = require('express');
 const sse = require('sse-express');
-const mock = require('mock-require');
+const getGpio = require('./get-gpio');
 
-mock('rpi-gpio', { request: function() {
-  console.log('gpio called');
-}});
-
-const gpio = require('rpi-gpio');
+const gpio = getGpio({fallback: true});
 
 const team1Pin = 3; // GPIO02 3 from raspberry
 const team2Pin = 5; // GPIO03 5 from raspberry
