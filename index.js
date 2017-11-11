@@ -85,16 +85,16 @@ class Game extends EventEmitter {
     this.startTime = null;
     this.endTime = null;
     this.running = false;
-    this.blackScore = 0;
-    this.whiteScore = 0;
+    this.team1Score = 0;
+    this.team2Score = 0;
   }
 
   countGoal(team) {
     if (team === 'black') {
-      this.blackScore += 1;
+      this.team1Score += 1;
     }
     if (team === 'white') {
-      this.whiteScore += 1;
+      this.team2Score += 1;
     }
     this.emit('goal', this);
   }
@@ -117,8 +117,8 @@ class Game extends EventEmitter {
       running: this.running,
       endTime: this.endTime,
       startTime: this.startTime,
-      blackScore: this.blackScore,
-      whiteScore: this.whiteScore
+      team1Score: this.team1Score,
+      team2Score: this.team2Score
     };
   }
 }
