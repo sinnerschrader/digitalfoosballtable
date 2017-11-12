@@ -87,6 +87,7 @@ class Game extends EventEmitter {
   }
 
   countScore(team) {
+    console.log('teamscoretype ' + typeof this.team1Score + ' teamscore ' + this.team1Score);
     if (team === 'team1' && this.team1Score <= 6) {
       this.team1Score += 1;
     }
