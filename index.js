@@ -101,8 +101,6 @@ class Game extends EventEmitter {
     }
 
     this.emit('goal', this);
-    game.stop();
-    game.start();
   }
 
   start() {
@@ -110,6 +108,8 @@ class Game extends EventEmitter {
     this.startTime = Date.now();
     this.running = true;
     this.emit('start', this);
+    this.team1Score = 0;
+    this.team2Score = 0;
   }
 
   stop() {
