@@ -2,7 +2,7 @@ async function main() {
   const body = document.body;
   const game = await getGame();
   const source = new EventSource('/events');
-
+  
   const clockElement = document.querySelector('[data-clock]')
 
   body.addEventListener('click', () => {
@@ -34,7 +34,7 @@ function showScore(team1Score, team2Score, teamWin) {
     team2.textContent = team2Score;
   }
 
-  if(teamWin.length){
+  if(teamWin && teamWin.length){
     document.body.classList.add(teamWin);
   }
 

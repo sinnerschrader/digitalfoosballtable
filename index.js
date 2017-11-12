@@ -9,8 +9,8 @@ const gpio = getGpio({fallback: true});
 
 const team1Pin = 3; // GPIO03 3 from raspberry
 const team2Pin = 5; // GPIO02 5 from raspberry
-const team1 = 'black';
-const team2 = 'white';
+const team1 = 'team1';
+const team2 = 'team2';
 
 module.exports = server;
 
@@ -88,18 +88,17 @@ class Game extends EventEmitter {
 
   countScore(team) {
     if (team === 'team1' && this.team1Score <= 6) {
-      setTimeout(function(){
-        this.team1Score += 1;
-      }, 2000);
+      this.team1Score += 1;
     }
+
     if (team === 'team2' && this.team2Score <= 6) {
-      setTimeout(function(){
-        this.team2Score += 1;
-      }, 2000);
+      this.team2Score += 1;
     }
-    if (team === 6){
+
+    if (this.team1Score === 6 || this.team2Score === 6){
       this.teamWin = team;
     }
+
     this.emit('goal', this);
   }
 
