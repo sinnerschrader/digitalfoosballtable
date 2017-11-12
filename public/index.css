@@ -54,6 +54,8 @@ h1, h2, h3, h4 {
   box-sizing: border-box;
   padding: 4em 0;
   text-align: center;
+
+  transition: all ease-in 0.75s;
 }
 
 .team-headline {
@@ -65,7 +67,7 @@ h1, h2, h3, h4 {
   flex: 0 0 auto;
 }
 
-.team-white {
+.team2 {
   background-color: #ffffff;
   color: #333333;
 }
@@ -74,4 +76,50 @@ h1, h2, h3, h4 {
   display: inline-block;
   font-size: 50vh;
   line-height: 1;
+
+  transition: all ease-in 0.5s;
+}
+
+.team2-won .team2 {
+  flex: 1 0 70%;
+}
+
+.team2-won .team1 {
+  flex: 0 1 30%;
+}
+
+.team2-won .team2 .team-score {
+  font-size: 55vh;
+  color: #03ffb7;
+}
+
+.team2-won .team1 .team-score {
+  color: #ff0354;
+  font-size: 40vh;
+}
+
+.team2-won .team1 .team-headline {
+  font-size: 2rem;
+}
+
+.team1-won .team1 {
+  flex: 1 0 70%;
+}
+
+.team1-won .team2 {
+  flex: 0 1 30%;
+}
+
+.team1-won .team1 .team-score {
+  font-size: 55vh;
+  color: #03ffb7;
+}
+
+.team1-won .team2 .team-score {
+  color: #ff0354;
+  font-size: 40vh;
+}
+
+.team1-won .team2 .team-headline {
+  font-size: 2rem;
 }
