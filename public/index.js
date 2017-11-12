@@ -1,46 +1,95 @@
+main();
+
 async function main() {
   const body = document.body;
   const game = await getGame();
   const source = new EventSource('/events');
+  const button = document.querySelector('[data-game-button]');
+  const input = document.querySelector('[data-game-running]');
 
-  const clockElement = document.querySelector('[data-clock]')
-
-  body.addEventListener('click', () => {
-    setGame(game, !game.running);
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    setGame(game, input.value === 'true');
   });
 
-  source.addEventListener('start', (e) => {
-    const data = JSON.parse(e.data);
-    startClock(clockElement, data.startTime);
+  source.addEventListener('start', async (e) => {
+    render(await getGame());
   });
 
-  source.addEventListener('stop', (e) => {
-    const data = JSON.parse(e.data);
-    stopClock(clockElement, data.endTime);
+  source.addEventListener('stop', async (e) => {
+    render(await getGame());
   });
 
-  source.addEventListener('goal', (e) => {
-    const data = JSON.parse(e.data);
-    showScore(data.team1Score, data.team2Score, data.teamWin);
-  })
+  source.addEventListener('heartbeat', (e) => {
+    const beat = JSON.parse(e.data);
+    renderClock(beat);
+  });
+
+  source.addEventListener('goal', async (e) => {
+    render(await getGame());
+  });
+
+  source.addEventListener('win', async (e) => {
+    render(await getGame());
+  });
+
+  render(game);
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get('debug') === 'digitalfoosballtable') {
+    debug(game);
+  }
 }
 
-function showScore(team1Score, team2Score, teamWin) {
+function render(game) {
   const team1 = document.querySelector('[data-score="team1"]');
   const team2 = document.querySelector('[data-score="team2"]');
+  const button = document.querySelector('[data-game-button]');
+  const input = document.querySelector('[data-game-running]');
 
-  if(team1Score !== undefined || team2Score !== undefined){
-    team1.textContent = team1Score;
-    team2.textContent = team2Score;
+  team1.textContent = game.team1Score;
+  team2.textContent = game.team2Score;
+
+  if (game.teamWin) {
+    document.body.classList.add(`${game.teamWin}-won`);
+  } else {
+    document.body.classList.remove(`team1-won`, `team2-won`);
   }
 
-  if(teamWin && teamWin.length){
-    document.body.classList.add(teamWin + '-won');
-    setGame(game, !game.running); // not working
+  if (game.running) {
+    button.textContent = 'Stop';
+  } else {
+    button.textContent = 'Start';
+  }
+
+  input.value = !game.running;
+
+  renderClock({
+    startTime: game.startTime,
+    running: game.running
+  });
+}
+
+function renderClock(data) {
+  const clock = document.querySelector('[data-game-clock]');
+
+  if (data.running) {
+    clock.textContent = time((Date.now() - data.startTime) / 1000);
+  } else {
+    clock.textContent = '00:00:00';
   }
 }
 
-showScore();
+function score(team) {
+  fetch('/score', {
+    method: 'POST',
+    body: JSON.stringify({team}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
 
 async function setGame(game, running) {
   const response = await fetch('/game', {
@@ -66,4 +115,43 @@ async function getGame() {
   return response.json();
 }
 
-main();
+function debug(game) {
+  const script = document.createElement('script');
+  script.src = 'dat.gui.js';
+
+  script.addEventListener('load', () => {
+    const ctrl = {
+      startGame() {
+        setGame(game, true);
+      },
+      stopGame() {
+        setGame(game, false);
+      },
+      scoreOne() {
+        score('team1');
+      },
+      scoreTwo() {
+        score('team2');
+      }
+    };
+
+    const gui = new dat.GUI();
+    gui.add(ctrl, 'startGame');
+    gui.add(ctrl, 'stopGame');
+    gui.add(ctrl, 'scoreOne');
+    gui.add(ctrl, 'scoreTwo');
+  });
+
+  document.body.appendChild(script);
+}
+
+function time(sec) {
+  const hours   = Math.floor(sec / 3600);
+  const minutes = Math.floor((sec - (hours * 3600)) / 60);
+  const seconds = sec - (hours * 3600) - (minutes * 60);
+
+  return [hours, minutes, seconds]
+    .map(u => Math.round(u))
+    .map(u => u < 10 ? `0${u}` : String(u))
+    .join(':')
+}

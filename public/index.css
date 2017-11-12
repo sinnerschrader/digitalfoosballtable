@@ -123,3 +123,20 @@ h1, h2, h3, h4 {
 .team1-won .team2 .team-headline {
   font-size: 2rem;
 }
+
+.game-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.game-clock {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}

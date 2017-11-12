@@ -1,22 +1,29 @@
 <html>
   <head>
-    <title>Digital foosball table - 2017</title>
+    <title>digitalfoosballtable</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" type="text/css" rel="stylesheet">
   </head>
   <body>
-    <h1 class="headline"><span class="banderole">Digital foosball</span></h1>
-    <div class="teams">
-      <div class="team team1">
-        <h2 class="team-headline">Team Black</h2>
-        <h3 class="team-score" data-score="team1">0</h3>
+    <form method="POST" action="/game">
+      <h1 class="headline"><span class="banderole">Digital foosball</span></h1>
+      <span class="game-clock" data-game-clock>00:00</span>
+      <div class="teams">
+        <div class="team team1">
+          <h2 class="team-headline">Team Black</h2>
+          <h3 class="team-score" data-score="team1">0</h3>
+        </div>
+        <div class="team team2">
+          <h2 class="team-headline">Team White</h2>
+          <h3 class="team-score" data-score="team2">0</h3>
+        </div>
       </div>
-      <div class="team team2">
-        <h2 class="team-headline">Team White</h2>
-        <h3 class="team-score" data-score="team2">0</h3>
-      </div>
-    </div>
+      <input type="hidden" name="running" value="true" data-game-running/>
+      <button type="submit" class="game-button" data-game-button>
+        Start Game
+      </button>
+    </form>
     <script src="index.js"></script>
   </body>
 </html>
