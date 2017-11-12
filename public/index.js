@@ -35,21 +35,10 @@ function showScore(team1Score, team2Score, teamWin) {
   }
 
   if(teamWin && teamWin.length){
-    document.body.classList.add(teamWin);
-    setGame(game, !game.running);
+    document.body.classList.add(teamWin + '-won');
+    setGame(game, !game.running); // not working
   }
-
-  console.log('score ' + team1Score + ' white ' + team2Score);
 }
-
-function startClock(element, stamp) {
-  console.log('start');
-}
-
-function stopClock(element, stamp) {
-  console.log('stop');
-}
-
 
 showScore();
 
