@@ -29,8 +29,10 @@ function showScore(team1Score, team2Score) {
   const team1 = document.querySelector('[data-score="team1"]');
   const team2 = document.querySelector('[data-score="team2"]');
 
-  team1.textContent = team1Score;
-  team2.textContent = team2Score;
+  if(team1Score !== undefined || team2Score !== undefined){
+    team1.textContent = team1Score;
+    team2.textContent = team2Score;
+  }
 
   console.log('score ' + team1Score + ' white ' + team2Score);
 }
