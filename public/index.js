@@ -18,11 +18,16 @@ async function main() {
     }
 
     switch(e.key) {
-      case 'n':
+      case 'n': {
+        e.preventDefault();
         return setGame(game, true);
-      case 's':
+      }
+      case 's': {
+        e.preventDefault();
         return setGame(game, false);
+      }
       case 'r': {
+        e.preventDefault();
         await setGame(game, false)
         setGame(game, true);
       }
