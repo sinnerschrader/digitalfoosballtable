@@ -9,8 +9,8 @@ const getGpio = require('./get-gpio');
 
 const gpio = getGpio({fallback: true});
 
-const TEAM_ONE_PIN = 3;
-const TEAM_TWO_PIN = 5;
+const TEAM_ONE_PIN = 5;
+const TEAM_TWO_PIN = 3;
 const TEAM_ONE = 'team1';
 const TEAM_TWO = 'team2';
 
