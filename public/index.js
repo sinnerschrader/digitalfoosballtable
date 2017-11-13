@@ -80,9 +80,11 @@ function render(game) {
   }
 
   if (game.running) {
-    button.textContent = 'Stop [ctrl+alt+s]';
+    button.innerHTML = 'Stop <small>[ctrl+alt+s]</small>';
+    button.className = 'game-button game-button__stop';
   } else {
-    button.textContent = 'Start [ctrl+alt+n]';
+    button.innerHTML = 'Start <small>[ctrl+alt+n]</small>';
+    button.className = 'game-button game-button__start';
   }
 
   input.value = !game.running;
