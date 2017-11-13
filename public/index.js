@@ -132,6 +132,12 @@ function debug(game) {
       },
       scoreTwo() {
         score('team2');
+      },
+      scoreBounce() {
+        score('team1');
+        setTimeout(() => {
+          score('team1');
+        }, 500);
       }
     };
 
@@ -140,6 +146,7 @@ function debug(game) {
     gui.add(ctrl, 'stopGame');
     gui.add(ctrl, 'scoreOne');
     gui.add(ctrl, 'scoreTwo');
+    gui.add(ctrl, 'scoreBounce');
   });
 
   document.body.appendChild(script);

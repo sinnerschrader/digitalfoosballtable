@@ -155,6 +155,12 @@ class Game extends EventEmitter {
       return;
     }
 
+    if (typeof this.lastScoreTime === 'number' && Date.now() - this.lastScoreTime < 2000) {
+      return;
+    }
+
+    this.lastScoreTime = Date.now();
+
     if (team === TEAM_ONE) {
       this.team1Score = Math.min(this.team1Score + 1, 6);
     }
@@ -187,6 +193,7 @@ class Game extends EventEmitter {
     this.team1Score = 0;
     this.team2Score = 0;
     this.teamWin = '';
+    this.lastScoreTime = null;
   }
 
   stop() {
