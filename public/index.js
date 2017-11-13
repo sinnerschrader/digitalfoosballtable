@@ -13,20 +13,20 @@ async function main() {
   });
 
   window.addEventListener('keydown', async (e) => {
-    if (!e.ctrlKey) {
+    if (!e.ctrlKey || !e.altKey) {
       return;
     }
 
-    switch(e.key) {
-      case 'n': {
+    switch(e.which) {
+      case 78: { // n(ew game)
         e.preventDefault();
         return setGame(game, true);
       }
-      case 's': {
+      case 83: { // s(top)
         e.preventDefault();
         return setGame(game, false);
       }
-      case 'r': {
+      case 82: { // r(estart)
         e.preventDefault();
         await setGame(game, false)
         setGame(game, true);
@@ -80,9 +80,9 @@ function render(game) {
   }
 
   if (game.running) {
-    button.textContent = 'Stop [ctrl+s]';
+    button.textContent = 'Stop [ctrl+alt+s]';
   } else {
-    button.textContent = 'Start [ctrl+n]';
+    button.textContent = 'Start [ctrl+alt+n]';
   }
 
   input.value = !game.running;
